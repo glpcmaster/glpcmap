@@ -41,16 +41,11 @@
             var map = new google.maps.Map(document.getElementById("map_canvas"),
             mapOptions);
 
-            var image = new google.maps.MarkerImage('images/thief.png',
-                new google.maps.Size(65, 100),
-                new google.maps.Point(0, 0),
-                new google.maps.Point(56, 122));
-
             var marker = new google.maps.Marker({
                 position: new google.maps.LatLng(40, -2),
                 map: map,
                 title: 'Unaki Unarjardin',
-                icon: image
+                icon: new google.maps.MarkerImage('images/thief.png')
             });
 
             // Creating an InfowWindow          
