@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>map</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <style type="text/css">
         html
@@ -18,17 +19,49 @@
             height: 100%;
         }
     </style>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6IXbFjzikPBHdo3ysYy21qsEDDPWismw&sensor=true">
+    <link href="css/facebox.css" media="screen" rel="stylesheet" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript"></script>
+    <script src="scripts/facebox.js" type="text/javascript"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6IXbFjzikPBHdo3ysYy21qsEDDPWismw&sensor=true"
+        type="text/javascript">
     </script>
     <script type="text/javascript">
+
+        function ShowPersonDetails() {
+            jQuery.noConflict();
+            //to load a string
+            jQuery.facebox('<html><head><title>Person details</title> <style type="text/css">body{scrollbar-base-color: orange;}</style></head><body><textarea cols="20" rows="4">Here enough text to make this textarea grow scrollbars.... HTML scrollbars, scrollbar color, change browser scrollbars, css scrollbar, change color of the scrollbar...</textarea></body></html>');
+        }
         function initialize() {
             var mapOptions = {
                 center: new google.maps.LatLng(40, -4),
-                zoom: 6,
+                zoom: 7,
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };
             var map = new google.maps.Map(document.getElementById("map_canvas"),
             mapOptions);
+
+            var image = new google.maps.MarkerImage('images/thief.png',
+                new google.maps.Size(65, 100),
+                new google.maps.Point(0, 0),
+                new google.maps.Point(56, 122));
+
+            var marker = new google.maps.Marker({
+                position: new google.maps.LatLng(40, -2),
+                map: map,
+                title: 'Unaki Unarjardin',
+                icon: image
+            });
+
+            // Creating an InfowWindow          
+            var infowindow = new google.maps.InfoWindow({
+                content: 'Hello world'
+            });
+
+            // Adding a click event to the marker
+            google.maps.event.addListener(marker, 'click', function () {
+                ShowPersonDetails();
+            });
         }
     </script>
 </head>
